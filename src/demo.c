@@ -1,6 +1,6 @@
 #include "demo.h"
 
-u64 GetLibcBase()
+u64 dm_GetLibcBase()
 {
     FILE *fp;
     u64 addr = 0;
