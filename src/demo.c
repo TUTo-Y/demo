@@ -15,7 +15,7 @@ u64 dm_GetLibcBase()
 
     while (fgets(line, sizeof(line), fp))
     {
-        if (strstr(line, "libc") && strstr(line, "r-xp"))
+        if (strstr(line, "libc"))
         {
             sscanf(line, "%llx", &addr);
             break;
@@ -28,4 +28,11 @@ u64 dm_GetLibcBase()
         perror("获取libc基地址失败");
 
     return addr;
+}
+
+void dm_InitStd()
+{
+    setvbuf(stdin, NULL, _IONBF, 0);
+    setvbuf(stdout, NULL, _IONBF, 0);
+    setvbuf(stderr, NULL, _IONBF, 0);
 }

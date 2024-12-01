@@ -2,7 +2,7 @@
 CC = gcc
 
 # 定义编译选项
-CFLAGS = -Wall -O2
+CFLAGS = -Wall -O2 -g
 
 # 定义目录
 SRCDIR = src

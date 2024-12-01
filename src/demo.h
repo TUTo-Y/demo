@@ -73,8 +73,8 @@ typedef signed char s8;
 #define SET_ADDR_OFFSET_VALUE_OFFSET(addr, offset_addr, value, offset_value) SET_VALUE_OFFSET(GET_ADDR_OFFSET_VALUE(addr, offset_addr), offset_value, value)       // 设置带偏移的地址的值带偏移
 #define SET_ADDR_OFFSET_VALUE_OFFSET32(addr, offset_addr, value, offset_value) SET_VALUE_OFFSET32(GET_ADDR_OFFSET_VALUE32(addr, offset_addr), offset_value, value) // 设置带偏移的地址的值带偏移
 
-#define PUT_ADDR_VALUE(str, addr) printf("%s : 0x%llx", str, GET_VALUE(GET_ADDR_VALUE(addr)))     // 打印地址中的值
-#define PUT_ADDR_VALUE32(str, addr) printf("%s : 0x%x", str, GET_VALUE32(GET_ADDR_VALUE32(addr))) // 打印地址中的值
+#define PUT_ADDR_VALUE(str, addr) printf("%s : 0x%llx\n", str, GET_VALUE(GET_ADDR_VALUE(addr)))     // 打印地址中的值
+#define PUT_ADDR_VALUE32(str, addr) printf("%s : 0x%x\n", str, GET_VALUE32(GET_ADDR_VALUE32(addr))) // 打印地址中的值
 
 /**
  * 特殊运算
@@ -113,10 +113,16 @@ typedef signed char s8;
 #define MALLOC(size) (u64) malloc((u64)(size)) // 申请内存
 #define FREE(ptr) free((void *)(ptr))          // 释放内存
 #define LINE putchar('\n');                    // 换行
+#define BINSH 0x68732f6e69622f                 // /bin/sh
 
 /**
  * \brief 获取libc基地址
  */
 u64 dm_GetLibcBase();
+
+/**
+ * \brief 初始化标准输入输出错误
+ */
+void dm_InitStd();
 
 #endif // DEMO_H_

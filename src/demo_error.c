@@ -1,24 +1,15 @@
 #include "demo_error.h"
 
-/**
- * \brief 初始化错误信息
- * \param error 错误信息
- */
 void dm_InitError(dm_Error *error)
 {
     if (!error)
         return;
+
     error->message = NULL;
     error->is_error = false;
 }
 
-/**
- * \brief 设置错误信息
- * \param error 错误信息
- * \param message 错误信息内容
- * \return 返回错误信息内容
- */
-char *dm_SetError(dm_Error *error, const char *message)
+char *dm_SetErrorMsg(dm_Error *error, const char *message)
 {
     if (!error)
         return NULL;
@@ -35,15 +26,57 @@ char *dm_SetError(dm_Error *error, const char *message)
 
     // 设置错误标志
     error->is_error = true;
-    
+
     // 返回消息内容
     return error->message;
 }
 
-/**
- * \brief 清除错误信息
- * \param error 错误信息
- */
+char *dm_SetErrorMsg2(dm_Error *error, const char *message)
+{
+    if (!error)
+        return NULL;
+    if (!message)
+        return NULL;
+
+    char *err_message = strerror(errno);
+
+    // 分配消息内存
+    error->message = (char *)realloc(error->message, strlen(message) + strlen(err_message) + 5);
+    if (!error->message)
+        return NULL;
+
+    // 复制消息内容
+    strcpy(error->message, message);
+    strcat(error->message, " : ");
+    strcat(error->message, err_message);
+
+    // 设置错误标志
+    error->is_error = true;
+
+    // 返回消息内容
+    return error->message;
+}
+
+char *dm_GetErrorMsg(const dm_Error *error)
+{
+    if (!error)
+        return NULL;
+
+    // 当错误消息被设置时返回错误信息
+    if (error->is_error == true)
+        return error->message;
+
+    return NULL;
+}
+
+bool dm_HasError(const dm_Error *error)
+{
+    if (!error)
+        return false;
+    
+    return error->is_error;
+}
+
 void dm_ClearError(dm_Error *error)
 {
     if (!error)
@@ -53,28 +86,16 @@ void dm_ClearError(dm_Error *error)
     error->is_error = false;
 }
 
-/**
- * \brief 获取错误信息内容
- * \param error 错误信息
- * \return 返回错误信息内容
- */
-char *dm_PrintError(const dm_Error *error)
+void dm_PrintError(const dm_Error *error)
 {
     if (!error)
-        return NULL;
+        return;
 
-    // 当error->is_error为真时返回错误信息
+    // 当错误消息被设置时打印错误信息
     if (error->is_error == true)
-        return error->message;
-
-    return NULL;
+        fprintf(stderr, "%s%s%s\n", _RED, error->message, RESET);
 }
 
-/**
- * \brief 释放错误信息
- * \param error 错误信息
- * \return 返回错误信息
- */
 void dm_FreeError(dm_Error *error)
 {
     if (!error)

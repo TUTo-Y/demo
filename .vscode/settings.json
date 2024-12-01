@@ -4,6 +4,11 @@
         "type_traits": "c",
         "socket.h": "c",
         "demo_error.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "select.h": "c",
+        "unistd.h": "c",
+        "stdio.h": "c",
+        "demo_web.h": "c",
+        "types.h": "c"
     }
 }
