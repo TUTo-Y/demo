@@ -12,6 +12,10 @@ LIBDIR = lib
 # 定义目标文件
 TARGET = $(LIBDIR)/libdemo.a
 
+# 定义目标目录
+TARGET_INC = ~/include
+TARGET_LIB = ~/lib
+
 # 查找所有源文件
 SRCS = $(wildcard $(SRCDIR)/*.c)
 
@@ -23,8 +27,6 @@ OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
 
 # 默认目标
 all: $(TARGET)
-	cp lib/* ~/lib
-	cp src/*.h ~/include
 
 # 生成静态库
 $(TARGET): $(OBJS)

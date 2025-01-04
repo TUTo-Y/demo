@@ -1,0 +1,6 @@
+/home/tuto/lib/libdemo.a
+/home/tuto/include/demo_error.h
+/home/tuto/include/demo.h
+/home/tuto/include/demo_web.h
+/home/tuto/include/demo_mem.h
+/home/tuto/include/demo_color.h

@@ -102,7 +102,7 @@ bool dm_SocketRecv(dm_Socket *s, size_t size, dm_Mem *mem, struct timeval *timeo
 
             // 重新分配内存并读取数据
             size_t old_size = DM_MEM_SIZE(*mem);
-            dm_MemRealloc(mem, old_size + len);
+            *mem = dm_MemRealloc(*mem, old_size + len);
             ssize_t r = recv(s->socket, DM_MEM_DATA(*mem) + old_size, len, 0);
             if (r == -1)
             {
