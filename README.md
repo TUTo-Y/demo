@@ -1,6 +1,6 @@
 # demo工具
 
-## 编译
+## ubuntu下编译
 
 ```sh
 mkdir build
