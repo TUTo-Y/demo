@@ -1,2 +1,0 @@
-/usr/bin/ar qc libdemo.a CMakeFiles/demo.dir/demo.c.o CMakeFiles/demo.dir/demo_error.c.o CMakeFiles/demo.dir/demo_mem.c.o CMakeFiles/demo.dir/demo_web.c.o
-/usr/bin/ranlib libdemo.a
