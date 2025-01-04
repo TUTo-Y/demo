@@ -1,5 +1,5 @@
 # 最低版本要求
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.5.0)
 
 # 定义项目名称和版本
 project(demo VERSION 1.0)
